@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import store, { history } from './core/store/store';
+import Main from './shared/layout/Main';
+import GlobalStyles from './shared/styles/GlobalStyles';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router history={history}>
+        <GlobalStyles />
+        <Main />
+        <ToastContainer autoClose={4000} />
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
